@@ -7,11 +7,13 @@ using System.Web.Mvc;
 
 namespace BandMadness.Controllers
 {
-	public class HomeController : Controller
+	public class SongController : Controller
 	{
+		[HttpGet]
 		public ActionResult Index()
 		{
-			return View();
+			var db = new BMContext();
+			return View(db.Songs.ToList());
 		}
 	}
 }
