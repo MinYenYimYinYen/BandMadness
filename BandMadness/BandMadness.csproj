@@ -165,11 +165,16 @@
     <Compile Include="Migrations\201812070109308_SongsArrangements.Designer.cs">
       <DependentUpon>201812070109308_SongsArrangements.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201812100236145_parts.cs" />
+    <Compile Include="Migrations\201812100236145_parts.Designer.cs">
+      <DependentUpon>201812100236145_parts.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Arrangement.cs" />
     <Compile Include="Models\BMContext.cs" />
     <Compile Include="Models\Instrument.cs" />
     <Compile Include="Models\Member.cs" />
+    <Compile Include="Models\Part.cs" />
     <Compile Include="Models\Song.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -196,6 +201,9 @@
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
+    <Content Include="Styles\Main.css" />
+    <Content Include="Views\ViewResources\PlatoBackground.png" />
+    <Content Include="Views\ViewResources\PlatoBackground1.jpg" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -213,7 +221,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\ViewResources\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
@@ -239,6 +246,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201812070109308_SongsArrangements.resx">
       <DependentUpon>201812070109308_SongsArrangements.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201812100236145_parts.resx">
+      <DependentUpon>201812100236145_parts.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

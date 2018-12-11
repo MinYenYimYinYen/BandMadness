@@ -10,11 +10,13 @@ namespace BandMadness.Models
 	public class Member
 	{
 		#region Relationships
-		public virtual ICollection<Instrument> Instruments { get; set; }
+		public virtual List<Instrument> Instruments { get; set; }
+		public virtual List<Part> Parts { get; set; }
 		#endregion
 
 		public int MemberID { get; set; }
 		public string FirstName { get; set; }
 		public string LastName { get; set; }
+		public string Alias { get; set; }
 	}
 }
