@@ -1,0 +1,13 @@
+﻿@using BandMadness.Models;
+@model Instrument
+
+<table>
+	<tr>
+		@using (Html.BeginForm("Remove","Instrument"))
+		{
+
+			<td><input type="submit" value="Remove" id="@Model.Name"  /></td>
+		}
+		<td>@Model.Name</td>
+	</tr>
+</table>

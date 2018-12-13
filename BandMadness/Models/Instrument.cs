@@ -7,8 +7,8 @@ namespace BandMadness.Models
 {
 	public class Instrument
 	{
-		#region Region
-		public virtual IList<Member> Members { get; set; }
+		#region Relational
+		public virtual List<Member> Members { get; set; }
 		#endregion
 		public int InstrumentID { get; set; }
 		public string Name { get; set; }

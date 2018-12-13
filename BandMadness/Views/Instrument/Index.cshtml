@@ -1,0 +1,13 @@
+﻿@using BandMadness.Models
+
+@model IEnumerable<BandMadness.Models.Instrument>
+
+@{
+	ViewBag.Title = "Index";
+}
+
+<h2>Instruments</h2>
+<p>You could create a list of actual instruments, or just instrument types like lead guitar, rhythm guitar, etc.  Or, you could do both.</p>
+
+@{Html.RenderPartial("_AddInstrument", new Instrument());}
+@{ Html.RenderPartial("_ListInstruments", Model);}

@@ -52,6 +52,10 @@ namespace BandMadness.Models
 					mi.ToTable("MemberInstrument");
 				});
 
+			members
+				.HasOptional(m => m.DefaultInstrument);
+
+
 			songs
 				.HasMany(s => s.Arrangements)
 				.WithOptional(a => a.Song)

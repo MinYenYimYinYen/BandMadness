@@ -148,6 +148,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\InstrumentController.cs" />
     <Compile Include="Controllers\MemberController.cs" />
     <Compile Include="Controllers\SongController.cs" />
     <Compile Include="Global.asax.cs">
@@ -168,6 +169,10 @@
     <Compile Include="Migrations\201812100236145_parts.cs" />
     <Compile Include="Migrations\201812100236145_parts.Designer.cs">
       <DependentUpon>201812100236145_parts.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201812110103479_MemberHasDefaultInstrument.cs" />
+    <Compile Include="Migrations\201812110103479_MemberHasDefaultInstrument.Designer.cs">
+      <DependentUpon>201812110103479_MemberHasDefaultInstrument.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Arrangement.cs" />
@@ -218,6 +223,12 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Member\Details.cshtml" />
     <Content Include="Views\Song\Index.cshtml" />
+    <Content Include="Views\Shared\_AddMember.cshtml" />
+    <Content Include="Views\Instrument\Index.cshtml" />
+    <Content Include="Views\Shared\_AddInstrument.cshtml" />
+    <Content Include="Views\Shared\_ShowMember.cshtml" />
+    <Content Include="Views\Shared\_ListInstruments.cshtml" />
+    <Content Include="Views\Shared\_ShowInstrument.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -249,6 +260,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201812100236145_parts.resx">
       <DependentUpon>201812100236145_parts.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201812110103479_MemberHasDefaultInstrument.resx">
+      <DependentUpon>201812110103479_MemberHasDefaultInstrument.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

@@ -11,6 +11,17 @@ namespace BandMadness.Controllers
 	public class MemberController : Controller
 	{
 		#region Create
+		[HttpGet]
+		public ActionResult Add()
+		{
+			var db = new BMContext();
+
+			ViewBag.DefaultInstrumentID = new SelectList(db.Instruments, "InstrumentID", "Name");
+
+			return View();
+		}
+
+		[HttpPost]
 		public ActionResult Add(Member member)
 		{
 			using (BMContext db = new BMContext())
@@ -18,7 +29,7 @@ namespace BandMadness.Controllers
 				var existing = db.Members
 					.Where(m => m.FirstName + m.Alias == member.FirstName + m.Alias)
 					.SingleOrDefault();
-				if(existing != null)
+				if(existing == null)
 				{
 					db.Members.Add(member);
 					db.SaveChanges();
