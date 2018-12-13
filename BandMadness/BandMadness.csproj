@@ -207,7 +207,6 @@
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Styles\Main.css" />
-    <Content Include="Views\ViewResources\PlatoBackground.png" />
     <Content Include="Views\ViewResources\PlatoBackground1.jpg" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
@@ -221,17 +220,12 @@
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
-    <Content Include="Views\Member\Details.cshtml" />
-    <Content Include="Views\Song\Index.cshtml" />
-    <Content Include="Views\Shared\_AddMember.cshtml" />
-    <Content Include="Views\Instrument\Index.cshtml" />
-    <Content Include="Views\Shared\_AddInstrument.cshtml" />
-    <Content Include="Views\Shared\_ShowMember.cshtml" />
-    <Content Include="Views\Shared\_ListInstruments.cshtml" />
-    <Content Include="Views\Shared\_ShowInstrument.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\Instrument\" />
+    <Folder Include="Views\Member\" />
+    <Folder Include="Views\Song\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

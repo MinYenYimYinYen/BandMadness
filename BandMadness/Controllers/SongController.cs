@@ -9,11 +9,6 @@ namespace BandMadness.Controllers
 {
 	public class SongController : Controller
 	{
-		[HttpGet]
-		public ActionResult Index()
-		{
-			var db = new BMContext();
-			return View(db.Songs.ToList());
-		}
+	
 	}
 }
