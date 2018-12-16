@@ -23,7 +23,6 @@ namespace BandMadness.Controllers
 			}
 		}
 		
-		// GET: Instrument
 		public ActionResult Index()
 		{
 			return View(DB.Instruments.ToList());
@@ -47,6 +46,13 @@ namespace BandMadness.Controllers
 			return PartialView("_Invalid");
 		}
 
+		public ActionResult Edit(int InstrumentID = -1)
+		{
+			var DB = new BMContext();
+			var instrument = DB.Instruments.Find(InstrumentID);
+			if (instrument == null) return View("Index");
+			return View(instrument);
+		}
 
 		[HttpPost]
 		public ActionResult Edit(Instrument instrument)

@@ -41,15 +41,12 @@ namespace BandMadness.Controllers
 					DB.Songs.Add(song);
 					DB.SaveChanges();
 					return View("Index", DB.Songs.ToList());
-					//return RedirectToAction("Index");
-
 				}
 				return PartialView("_AlreadyExists");
 			}
 			return PartialView("_Invalid");
 		}
 
-		// GET: Song/Edit/5
 		public ActionResult Edit(int SongID = -1)
 		{
 			var DB = new BMContext();
@@ -58,7 +55,6 @@ namespace BandMadness.Controllers
 			return View(song);
 		}
 
-		// POST: Song/Edit/5
 		[HttpPost]
 		public ActionResult Edit(Song song)
 		{
