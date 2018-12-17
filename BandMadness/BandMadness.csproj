@@ -143,6 +143,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\InstrumentController.cs" />
+    <Compile Include="Controllers\MemberController.cs" />
     <Compile Include="Controllers\SongController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -167,12 +168,18 @@
     <Compile Include="Migrations\201812110103479_MemberHasDefaultInstrument.Designer.cs">
       <DependentUpon>201812110103479_MemberHasDefaultInstrument.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201812162247033_removedUnusedClasses.cs" />
+    <Compile Include="Migrations\201812162247033_removedUnusedClasses.Designer.cs">
+      <DependentUpon>201812162247033_removedUnusedClasses.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201812170317248_NoDefaultInstrument.cs" />
+    <Compile Include="Migrations\201812170317248_NoDefaultInstrument.Designer.cs">
+      <DependentUpon>201812170317248_NoDefaultInstrument.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
-    <Compile Include="Models\Arrangement.cs" />
     <Compile Include="Models\BMContext.cs" />
     <Compile Include="Models\Instrument.cs" />
     <Compile Include="Models\Member.cs" />
-    <Compile Include="Models\Part.cs" />
     <Compile Include="Models\Song.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -218,11 +225,15 @@
     <Content Include="Views\Shared\_Success.cshtml" />
     <Content Include="Views\Shared\_AlreadyExists.cshtml" />
     <Content Include="Views\Song\Edit.cshtml" />
-    <Content Include="Views\Song\Delete.cshtml" />
+    <Content Include="Views\Song\_Delete.cshtml" />
     <Content Include="Views\Instrument\Index.cshtml" />
     <Content Include="Views\Instrument\_Create.cshtml" />
     <Content Include="Views\Instrument\Edit.cshtml" />
-    <Content Include="Views\Instrument\Delete.cshtml" />
+    <Content Include="Views\Instrument\_Delete.cshtml" />
+    <Content Include="Views\Member\Index.cshtml" />
+    <Content Include="Views\Member\_Create.cshtml" />
+    <Content Include="Views\Member\_Delete.cshtml" />
+    <Content Include="Views\Member\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -257,6 +268,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201812110103479_MemberHasDefaultInstrument.resx">
       <DependentUpon>201812110103479_MemberHasDefaultInstrument.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201812162247033_removedUnusedClasses.resx">
+      <DependentUpon>201812162247033_removedUnusedClasses.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201812170317248_NoDefaultInstrument.resx">
+      <DependentUpon>201812170317248_NoDefaultInstrument.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

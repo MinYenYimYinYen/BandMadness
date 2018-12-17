@@ -1,0 +1,55 @@
+﻿@model BandMadness.Models.Member
+
+@{
+	ViewBag.Title = "Edit";
+}
+
+<h2>Edit</h2>
+
+@using (Html.BeginForm("Edit", "Member"))
+{
+	@Html.AntiForgeryToken()
+
+	<div class="form-horizontal">
+		<h4>Member</h4>
+		<hr />
+		@Html.ValidationSummary(true, "", new { @class = "text-danger" })
+		@Html.HiddenFor(model => model.MemberID)
+
+		<div id="NAME" class="form-group">
+			<table>
+				<tr>
+					<th>@Html.LabelFor(model => model.FirstName, "First Name", htmlAttributes: new { @class = "control-label col-md-2" })	</th>
+					<th>@Html.LabelFor(model => model.LastName, "Last Name", htmlAttributes: new { @class = "control-label col-md-2" })		</th>
+					<th>@Html.LabelFor(model => model.Alias, "Alias", htmlAttributes: new { @class = "control-label col-md-2" })					</th>
+				</tr>
+				<tr>
+					<td>@Html.EditorFor(model => model.FirstName, new { htmlAttributes = new { @class = "form-control col-md-6" } })	</td>
+					<td>@Html.EditorFor(model => model.LastName, new { htmlAttributes = new { @class = "form-control col-md-6" } })		</td>
+					<td>@Html.EditorFor(model => model.Alias, new { htmlAttributes = new { @class = "form-control col-md-6" } })			</td>
+				</tr>
+				<tr>
+					<td>@Html.ValidationMessageFor(model => model.FirstName, "", new { @class = "text-danger" })</td>
+					<td>@Html.ValidationMessageFor(model => model.LastName, "", new { @class = "text-danger" })	</td>
+					<td>@Html.ValidationMessageFor(model => model.Alias, "", new { @class = "text-danger" })		</td>
+				</tr>
+			</table>
+		</div>
+		@*<div id="INSTRUMENT" class="form-group">
+			@Html.LabelFor(m => m.DefaultInstrumentID, "Default Instrument", new { @class = "control-label col-md-2" })
+			@Html.DropDownList("DefaultInstrumentID",string.Empty)
+		</div>*@
+
+		<div class="form-group">
+			<div class="col-md-offset-2 col-md-10">
+				<input type="submit" value="Save" class="btn btn-default" />
+			</div>
+		</div>
+	</div>
+			}
+<div>
+	@{ Html.RenderPartial("_Delete", Model);}
+</div>
+<div>
+	@Html.ActionLink("Back to List", "Index")
+</div>

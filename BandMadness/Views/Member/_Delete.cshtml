@@ -1,0 +1,8 @@
+﻿@model BandMadness.Models.Member
+
+@using (Html.BeginForm("Delete", "Member",FormMethod.Post))
+{
+
+	@Html.HiddenFor(m => m.MemberID);
+	<input type="submit" value="Delete Member" />
+}

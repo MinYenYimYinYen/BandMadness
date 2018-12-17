@@ -1,0 +1,32 @@
+﻿@model IEnumerable<BandMadness.Models.Member>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Members</h2>
+
+<p>
+	@{ Html.RenderPartial("_Create",new Member());}
+</p>
+<table class="table">
+    <tr>
+        <th>
+            <label>Name</label>
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.DisplayName)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { MemberID=item.MemberID })
+
+        </td>
+    </tr>
+}
+
+</table>
