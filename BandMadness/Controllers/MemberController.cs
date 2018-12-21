@@ -82,10 +82,7 @@ namespace BandMadness.Controllers
 		{
 			if (ModelState.IsValid)
 			{
-				var member = DB.Members.Find(memberEdit.Member.MemberID);
-				member.FirstName = memberEdit.Member.FirstName;
-				member.LastName = memberEdit.Member.LastName;
-				member.Alias = memberEdit.Member.Alias;
+				DB.Entry(memberEdit.Member).State = EntityState.Modified;
 
 
 				List<Instrument> addThese = new List<Instrument>();
@@ -94,9 +91,9 @@ namespace BandMadness.Controllers
 					var id = Convert.ToInt32(inst);
 					addThese.Add(DB.Instruments.Find(id));
 				}
-				member.Instruments.Clear();
-				member.Instruments.AddRange(addThese);
-				
+				memberEdit.Member.Instruments.Clear();
+				memberEdit.Member.Instruments.AddRange(addThese);
+
 				DB.SaveChanges();
 			}
 			return View("Index",DB.Members.ToList());

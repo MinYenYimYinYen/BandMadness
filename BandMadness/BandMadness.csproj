@@ -180,10 +180,21 @@
     <Compile Include="Migrations\201812170324184_ExplicitTableNamew.Designer.cs">
       <DependentUpon>201812170324184_ExplicitTableNamew.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201812210255053_check.cs" />
+    <Compile Include="Migrations\201812210255053_check.Designer.cs">
+      <DependentUpon>201812210255053_check.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201812210427120_RecordingAbstract.cs" />
+    <Compile Include="Migrations\201812210427120_RecordingAbstract.Designer.cs">
+      <DependentUpon>201812210427120_RecordingAbstract.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Models\RecAlbum.cs" />
+    <Compile Include="Models\Recording.cs" />
     <Compile Include="Models\BMContext.cs" />
     <Compile Include="Models\Instrument.cs" />
     <Compile Include="Models\Member.cs" />
+    <Compile Include="Models\RecPilot.cs" />
     <Compile Include="Models\Song.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Views\Instrument\ViewModels\InstrumentEdit.cs" />
@@ -283,6 +294,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201812170324184_ExplicitTableNamew.resx">
       <DependentUpon>201812170324184_ExplicitTableNamew.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201812210255053_check.resx">
+      <DependentUpon>201812210255053_check.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201812210427120_RecordingAbstract.resx">
+      <DependentUpon>201812210427120_RecordingAbstract.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

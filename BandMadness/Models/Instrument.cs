@@ -13,7 +13,9 @@ namespace BandMadness.Models
 		}
 		#region Relational
 		public virtual List<Member> Members { get; set; }
-		//public virtual List<int> MemberIDs { get; set; }
+		public virtual List<Recording> Recordings { get; set; }
+
+
 		#endregion
 		public int InstrumentID { get; set; }
 		public string Name { get; set; }

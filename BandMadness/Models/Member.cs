@@ -16,7 +16,7 @@ namespace BandMadness.Models
 
 		#region Relationships
 		public virtual List<Instrument> Instruments { get; set; }
-		//public virtual List<int> InstrumentIDs { get; set; }
+		public virtual List<Recording> Recordings { get; set; }
 
 		#endregion
 

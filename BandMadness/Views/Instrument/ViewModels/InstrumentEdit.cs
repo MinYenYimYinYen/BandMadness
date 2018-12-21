@@ -9,6 +9,10 @@ namespace BandMadness.Views.Instrument.ViewModels
 {
 	public class InstrumentEdit
 	{
+		public InstrumentEdit()
+		{
+			MemberIDs = new List<string>();
+		}
 		public List<string> MemberIDs { get; set; }
 		[DisplayName("SLMembers")]
 		public MultiSelectList	SLMembers{ get; set; }

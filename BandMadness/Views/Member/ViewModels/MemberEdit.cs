@@ -9,7 +9,10 @@ namespace BandMadness.Views.Member.ViewModels
 {
 	public class MemberEdit
 	{
-
+		public MemberEdit()
+		{
+			InstrumentIDs = new List<string>();
+		}
 
 		public List<string> InstrumentIDs { get; set; }
 

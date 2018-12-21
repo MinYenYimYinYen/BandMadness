@@ -47,7 +47,7 @@ namespace BandMadness.Controllers
 			return PartialView("_Invalid");
 		}
 
-		[HttpGet]
+		[HttpGet] //https://www.codeproject.com/Articles/1063846/%2FArticles%2F1063846%2FStep-By-Step-Implementation-of-MultiSelectList-In
 		public ActionResult Edit(int InstrumentID = -1)
 		{
 			var instrument = DB.Instruments.Find(InstrumentID);
