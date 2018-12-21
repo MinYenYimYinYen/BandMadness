@@ -9,8 +9,14 @@ namespace BandMadness.Models
 {
 	public class Member
 	{
+		public Member()
+		{
+			Instruments = new List<Instrument>();
+		}
+
 		#region Relationships
 		public virtual List<Instrument> Instruments { get; set; }
+		//public virtual List<int> InstrumentIDs { get; set; }
 
 		#endregion
 

@@ -20,12 +20,16 @@ namespace BandMadness.Models
 			//modelBuilder.Conventions.Add<PluralizingTableNameConvention>();
 
 			//Create vars for entities
-			var members = modelBuilder.Entity<Member>();
-			var instruments = modelBuilder.Entity<Instrument>();
-			var songs = modelBuilder.Entity<Song>();
+			var member = modelBuilder.Entity<Member>();
+			var instrument = modelBuilder.Entity<Instrument>();
+			var song = modelBuilder.Entity<Song>();
+
+			member.ToTable("Member");
+			instrument.ToTable("Instrument");
+			song.ToTable("Song");
 
 			//Configure Relationships
-			members
+			member
 				.HasMany(m => m.Instruments)
 				.WithMany(i => i.Members)
 				.Map(mi =>

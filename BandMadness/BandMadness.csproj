@@ -176,12 +176,18 @@
     <Compile Include="Migrations\201812170317248_NoDefaultInstrument.Designer.cs">
       <DependentUpon>201812170317248_NoDefaultInstrument.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201812170324184_ExplicitTableNamew.cs" />
+    <Compile Include="Migrations\201812170324184_ExplicitTableNamew.Designer.cs">
+      <DependentUpon>201812170324184_ExplicitTableNamew.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\BMContext.cs" />
     <Compile Include="Models\Instrument.cs" />
     <Compile Include="Models\Member.cs" />
     <Compile Include="Models\Song.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Views\Instrument\ViewModels\InstrumentEdit.cs" />
+    <Compile Include="Views\Member\ViewModels\MemberEdit.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />
@@ -274,6 +280,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201812170317248_NoDefaultInstrument.resx">
       <DependentUpon>201812170317248_NoDefaultInstrument.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201812170324184_ExplicitTableNamew.resx">
+      <DependentUpon>201812170324184_ExplicitTableNamew.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

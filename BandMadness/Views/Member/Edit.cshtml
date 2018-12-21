@@ -1,44 +1,40 @@
-﻿@model BandMadness.Models.Member
+﻿@model BandMadness.Views.Member.ViewModels.MemberEdit
 
 @{
 	ViewBag.Title = "Edit";
 }
 
-<h2>Edit</h2>
+<h2>Edit Member</h2>
 
-@using (Html.BeginForm("Edit", "Member"))
+@using (Html.BeginForm("Edit", "Member", FormMethod.Post, new { @class = "form-horizontal" }))
 {
 	@Html.AntiForgeryToken()
 
-	<div class="form-horizontal">
-		<h4>Member</h4>
-		<hr />
-		@Html.ValidationSummary(true, "", new { @class = "text-danger" })
-		@Html.HiddenFor(model => model.MemberID)
+	<div class="form-group">
+		@Html.HiddenFor(m => m.Member.MemberID)
 
-		<div id="NAME" class="form-group">
 			<table>
 				<tr>
-					<th>@Html.LabelFor(model => model.FirstName, "First Name", htmlAttributes: new { @class = "control-label col-md-2" })	</th>
-					<th>@Html.LabelFor(model => model.LastName, "Last Name", htmlAttributes: new { @class = "control-label col-md-2" })		</th>
-					<th>@Html.LabelFor(model => model.Alias, "Alias", htmlAttributes: new { @class = "control-label col-md-2" })					</th>
+					<th>@Html.LabelFor(m => m.Member.FirstName, new { @class = "control-label col-md-4" })</th>
+					<th>@Html.LabelFor(m => m.Member.LastName, new { @class = "control-label col-md-4" })</th>
+					<th>@Html.LabelFor(m => m.Member.Alias, new { @class = "control-label col-md-4" })</th>
 				</tr>
 				<tr>
-					<td>@Html.EditorFor(model => model.FirstName, new { htmlAttributes = new { @class = "form-control col-md-6" } })	</td>
-					<td>@Html.EditorFor(model => model.LastName, new { htmlAttributes = new { @class = "form-control col-md-6" } })		</td>
-					<td>@Html.EditorFor(model => model.Alias, new { htmlAttributes = new { @class = "form-control col-md-6" } })			</td>
-				</tr>
-				<tr>
-					<td>@Html.ValidationMessageFor(model => model.FirstName, "", new { @class = "text-danger" })</td>
-					<td>@Html.ValidationMessageFor(model => model.LastName, "", new { @class = "text-danger" })	</td>
-					<td>@Html.ValidationMessageFor(model => model.Alias, "", new { @class = "text-danger" })		</td>
+					<td>@Html.EditorFor(m => m.Member.FirstName, new { @class = "form-control col-md-7" })</td>
+					<td>@Html.EditorFor(m => m.Member.LastName, new { @class = "form-control col-md-7" })</td>
+					<td>@Html.EditorFor(m => m.Member.Alias, new { @class = "form-control col-md-7" })</td>
 				</tr>
 			</table>
-		</div>
-		@*<div id="INSTRUMENT" class="form-group">
-			@Html.LabelFor(m => m.DefaultInstrumentID, "Default Instrument", new { @class = "control-label col-md-2" })
-			@Html.DropDownList("DefaultInstrumentID",string.Empty)
-		</div>*@
+		<table>
+			<tr><th>@Html.LabelFor(m => m.Member.Instruments, new { @class = "control-label" })</th></tr>
+			<tr><td>@Html.ListBoxFor(m=>Model.InstrumentIDs,Model.SLInstruments)</td></tr>
+
+		</table>
+			<br />
+
+
+
+
 
 		<div class="form-group">
 			<div class="col-md-offset-2 col-md-10">
@@ -46,9 +42,9 @@
 			</div>
 		</div>
 	</div>
-			}
+}
 <div>
-	@{ Html.RenderPartial("_Delete", Model);}
+	@{ Html.RenderPartial("_Delete", Model.Member);}
 </div>
 <div>
 	@Html.ActionLink("Back to List", "Index")

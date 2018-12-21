@@ -8,6 +8,8 @@ namespace BandMadness.Models
 {
 	public class Song
 	{
+		
+
 		public int SongID { get; set; }
 
 		//[MaxLength(256)]

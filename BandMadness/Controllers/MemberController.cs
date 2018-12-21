@@ -1,4 +1,5 @@
 ﻿using BandMadness.Models;
+using BandMadness.Views.Member.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -47,28 +48,58 @@ namespace BandMadness.Controllers
 			return PartialView("_Invalid");
 		}
 
+		[HttpGet]
 		public ActionResult Edit(int MemberID = -1)
 		{
-			var DB = new BMContext();
 			var member = DB.Members.Find(MemberID);
-			if (member == null) return View("Index");
 
-			//ViewBag.DefaultInstrumentID = new SelectList(DB.Instruments, "InstrumentID", "Name", member.DefaultInstrumentID);
-			return View(member);
+			var allInstruments = DB.Instruments.ToList();
+
+			List<SelectListItem> items = new List<SelectListItem>();
+			foreach (var inst in allInstruments)
+			{
+				var item = new SelectListItem
+				{
+					Value = inst.InstrumentID.ToString(),
+					Text = inst.Name,
+					Selected = member.Instruments.Contains(inst) ? true : false
+				};
+				items.Add(item);
+			}
+			var selected = items.Where(i => i.Selected).Select(i => i.Value).ToList();
+			MultiSelectList instList = new MultiSelectList
+				(items.OrderBy(i => i.Text), "Value", "Text", selected);
+			MemberEdit model = new MemberEdit { SLInstruments = instList };
+			model.Member = member;
+
+
+			return View(model);
 		}
 
 		[HttpPost]
-		public ActionResult Edit(Member member)
+		[ValidateAntiForgeryToken]
+		public ActionResult Edit([Bind(Include = "Member,InstrumentIDs")]MemberEdit memberEdit)
 		{
 			if (ModelState.IsValid)
 			{
-				//happy path
-				DB.Entry(member).State = EntityState.Modified;
+				var member = DB.Members.Find(memberEdit.Member.MemberID);
+				member.FirstName = memberEdit.Member.FirstName;
+				member.LastName = memberEdit.Member.LastName;
+				member.Alias = memberEdit.Member.Alias;
+
+
+				List<Instrument> addThese = new List<Instrument>();
+				foreach (var inst in memberEdit.InstrumentIDs)
+				{
+					var id = Convert.ToInt32(inst);
+					addThese.Add(DB.Instruments.Find(id));
+				}
+				member.Instruments.Clear();
+				member.Instruments.AddRange(addThese);
+				
 				DB.SaveChanges();
-				return View("Index", DB.Members.ToList());
 			}
-			//sad path
-			return View("Edit", member);
+			return View("Index",DB.Members.ToList());
 		}
 
 		[HttpPost]
