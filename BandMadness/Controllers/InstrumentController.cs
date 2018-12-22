@@ -73,7 +73,7 @@ namespace BandMadness.Controllers
 
 		[HttpPost]
 		[ValidateAntiForgeryToken]
-		public ActionResult Edit([Bind(Include ="Instrument, MemberIDs")] InstrumentEdit instrumentEdit)
+		public ActionResult Edit( InstrumentEdit instrumentEdit)
 		{
 			if (ModelState.IsValid)
 			{
@@ -95,7 +95,7 @@ namespace BandMadness.Controllers
 				return View("Index", DB.Instruments.ToList());
 			}
 			//sad path
-			return View("Edit", instrumentEdit.Instrument);
+			return View("Edit", instrumentEdit);
 		}
 
 		[HttpPost]
