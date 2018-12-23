@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BandMadness.Models.ManyToMany;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
