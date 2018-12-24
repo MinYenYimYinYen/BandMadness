@@ -24,7 +24,7 @@ namespace BandMadness.Models
 
 		[Required]
 		//[Display(Name ="Instrument Type")]
-		[StringLength(128, MinimumLength = 2, ErrorMessage ="Instrument Type must be between 2-128 characters long.")]
+		[StringLength(128, MinimumLength = 2, ErrorMessage = "Instrument Type must be between 2-128 characters long.")]
 		public string Name { get; set; }
 
 
@@ -45,7 +45,11 @@ namespace BandMadness.Models
 			{
 				memberSelection = value;
 			}
-			#endregion
 		}
+
+
+		#endregion
+
+
 	}
 }

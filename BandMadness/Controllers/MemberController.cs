@@ -54,6 +54,24 @@ namespace BandMadness.Controllers
 			return View(member);
 		}
 
+		[HttpPost]
+		public ActionResult Edit(Member member)
+		{
+			if (ModelState.IsValid)
+			{
+				Member dbMember = DB.Members.Find(member.MemberID);
+				dbMember.Instruments.Clear();
+				foreach (var inst in member.InstrumentSelection.InstrumentIDs)
+				{
+					var id = Convert.ToInt32(inst);
+					dbMember.Instruments.Add(DB.Instruments.Find(id));
+				}
+				DB.SaveChanges();
+				return View("Index",DB.Members.ToList());
+			}
+			return View(member);
+		}
+
 		//[HttpPost]
 		//[ValidateAntiForgeryToken]
 		//public ActionResult Edit([Bind(Include = "Member,InstrumentIDs")]MemberEdit memberEdit)

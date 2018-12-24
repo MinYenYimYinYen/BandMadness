@@ -32,7 +32,11 @@ namespace BandMadness.Models.ManyToMany
 			get
 			{
 				var instruments = DB.Instruments.ToList().OrderBy(i => i.Name);
-				var selected = instruments.Union(IHaveInstruments.Instruments).ToList();
+				var selected = instruments
+					.Union(IHaveInstruments.Instruments)
+					.Select(i=>i.InstrumentID) // I think this is the key
+					.Distinct()
+					.ToList();
 				return new MultiSelectList(instruments,"InstrumentID","Name",selected);
 			}
 		}

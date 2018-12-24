@@ -190,10 +190,12 @@
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AbstractDB.cs" />
+    <Compile Include="Models\ManyToMany\IHaveMany.cs" />
     <Compile Include="Models\ManyToMany\InstrumentSelection.cs" />
     <Compile Include="Models\ManyToMany\IHaveInstruments.cs" />
     <Compile Include="Models\ManyToMany\IHaveMembers.cs" />
     <Compile Include="Models\ManyToMany\MemberSelection.cs" />
+    <Compile Include="Models\ManyToMany\Selection.cs" />
     <Compile Include="Models\RecAlbum.cs" />
     <Compile Include="Models\Recording.cs" />
     <Compile Include="Models\BMContext.cs" />

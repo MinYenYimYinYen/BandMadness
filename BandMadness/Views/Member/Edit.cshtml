@@ -17,6 +17,7 @@
 					<th>@Html.LabelFor(m => m.FirstName, new { @class = "control-label col-md-4" })</th>
 					<th>@Html.LabelFor(m => m.LastName, new { @class = "control-label col-md-4" })</th>
 					<th>@Html.LabelFor(m => m.Alias, new { @class = "control-label col-md-4" })</th>
+					
 				</tr>
 				<tr>
 					<td>@Html.EditorFor(m => m.FirstName, new { @class = "form-control col-md-7" })</td>
@@ -38,6 +39,7 @@
 		<div class="form-group">
 			<div class="col-md-offset-2 col-md-10">
 				<input type="submit" value="Save" class="btn btn-default" />
+				@Html.ValidationMessageFor(m => m)
 			</div>
 		</div>
 	</div>

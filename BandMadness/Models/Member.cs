@@ -28,12 +28,12 @@ namespace BandMadness.Models
 		[MaxLength(64)]
 		public string FirstName { get; set; }
 
-		[Required]
+
 		[Display(Name = "Last Name")]
 		[MaxLength(64)]
 		public string LastName { get; set; }
 
-		[Required]
+
 		[Display(Name = "Alias")]
 		[MaxLength(64)]
 		public string Alias { get; set; }
