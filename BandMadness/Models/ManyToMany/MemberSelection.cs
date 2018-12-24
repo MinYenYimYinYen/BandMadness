@@ -32,7 +32,16 @@ namespace BandMadness.Models.ManyToMany
 			get
 			{
 				var members = DB.Members.ToList().OrderBy(i => i.DisplayName);
-				var selected = members.Union(IHaveMembers.Members).ToList();
+				var selectedMemberIDs = IHaveMembers.Members.Select(m => m.MemberID).ToList();
+				var selected = new List<int>();
+				foreach(var member in members)
+				{
+					if (selectedMemberIDs.Contains(member.MemberID))
+					{
+						selected.Add(member.MemberID);
+					}
+				}
+
 				return new MultiSelectList(members, "MemberID", "DisplayName", selected);
 			}
 		}

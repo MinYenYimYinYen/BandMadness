@@ -16,6 +16,8 @@ namespace BandMadness.Models
 
 		protected override void OnModelCreating(DbModelBuilder modelBuilder)
 		{
+			
+
 			//Configure modelBuilder
 			modelBuilder.HasDefaultSchema("dbo");
 			//modelBuilder.Conventions.Add<PluralizingTableNameConvention>();
@@ -68,7 +70,7 @@ namespace BandMadness.Models
 
 		}
 
-
+		
 
 	}
 }

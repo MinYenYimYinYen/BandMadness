@@ -17,6 +17,10 @@ namespace BandMadness.Models
 		public virtual int MemberID { get; set; }
 		public virtual Member Member { get; set; }
 
+		public virtual bool IsPresent { get; set; }
+		public virtual string FolderPath { get; set; }
+		public virtual string FileName { get; set; }
+
 		public int RecordingID { get; set; }
 		
 

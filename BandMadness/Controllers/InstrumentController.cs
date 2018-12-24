@@ -22,7 +22,7 @@ namespace BandMadness.Controllers
 				return db____;
 			}
 		}
-		
+
 		public ActionResult Index()
 		{
 			return View(DB.Instruments.ToList());
@@ -36,7 +36,7 @@ namespace BandMadness.Controllers
 				var existing = DB.Instruments
 					.Where(s => s.Name == instrument.Name)
 					.SingleOrDefault();
-				if(existing == null)
+				if (existing == null)
 				{
 					DB.Instruments.Add(instrument);
 					DB.SaveChanges();
@@ -49,36 +49,31 @@ namespace BandMadness.Controllers
 		[HttpGet] //https://www.codeproject.com/Articles/1063846/%2FArticles%2F1063846%2FStep-By-Step-Implementation-of-MultiSelectList-In
 		public ActionResult Edit(int InstrumentID = -1)
 		{
-			var instrument = DB.Instruments.Find(InstrumentID);			
+			var instrument = DB.Instruments.Find(InstrumentID);
 			return View(instrument);
 		}
 
-		//[HttpPost]
-		//[ValidateAntiForgeryToken]
-		//public ActionResult Edit( Instrument instrument)
-		//{
-		//	if (ModelState.IsValid)
-		//	{
-		//		//happy path
-		//		DB.Entry(instrument).State = EntityState.Modified;
-		//		List<Member> addThese = new List<Member>();
-		//		foreach(var memb in instrument.MemberSelection.MemberStringIDs)
-		//		{
-		//			var id = Convert.ToInt32(memb);
-		//			addThese.Add(DB.Members.Find(id));
-		//		}
-		//		instrument.Members.Clear();
-		//		instrument.Members.AddRange(addThese);
+		[HttpPost]
+		public ActionResult Edit(Instrument instrument)
+		{
+			if (ModelState.IsValid)
+			{
+				Instrument dbInstrument = DB.Instruments.Find(instrument.InstrumentID);
 
+				#region ManyMembers
+				dbInstrument.Members.Clear();
+				foreach (var inst in instrument.MemberSelection.MemberIDs)
+				{
+					var id = Convert.ToInt32(inst);
+					dbInstrument.Members.Add(DB.Members.Find(id));
+				}
+				#endregion
 
-		//		DB.SaveChanges();
-
-
-		//		return View("Index", DB.Instruments.ToList());
-		//	}
-		//	//sad path
-		//	return View("Edit", instrument);
-		//}
+				DB.SaveChanges();
+				return View("Index", DB.Instruments.ToList());
+			}
+			return View(instrument);
+		}
 
 		[HttpPost]
 		public ActionResult Delete(Instrument song)
