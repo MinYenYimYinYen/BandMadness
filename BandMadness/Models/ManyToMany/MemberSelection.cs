@@ -6,7 +6,7 @@ using System.Web.Mvc;
 
 namespace BandMadness.Models.ManyToMany
 {
-	public  class MemberSelection
+	public class MemberSelection
 	{
 		public MemberSelection(IHaveMembers iMembers)
 		{
@@ -27,65 +27,80 @@ namespace BandMadness.Models.ManyToMany
 			}
 		}
 
-		private List<SelectListItem> sliMembers;
-		public List<SelectListItem> GetMemberSelectListItems()
-		{
-			//if (sliMembers == null)
-			{
-				sliMembers = new List<SelectListItem>();
-				foreach (var memb in DB.Members)
-				{
-					var slMember = new SelectListItem
-					{
-						Value = memb.MemberID.ToString(),
-						Text = memb.DisplayName,
-						Selected = 
-							IHaveMembers
-							.Members
-							.Select(m=>m.MemberID)
-							.Contains(memb.MemberID) ? true : false
-					};
-					sliMembers.Add(slMember);
-				}
-			}
-			return sliMembers;
-		}
-
-		private MultiSelectList mslMembers;
-		public MultiSelectList MSLMembers
+		public MultiSelectList MultiSelectList
 		{
 			get
 			{
-				//if (mslMembers == null)
-				{
-					var items = GetMemberSelectListItems();
-
-					var selected =
-						items
-						.Where(slm => slm.Selected)
-						.Select(slm => slm)
-						.ToList();
-
-					mslMembers = new MultiSelectList
-						(items.OrderBy(m => m.Text), "Value", "Text", selected);
-				}
-				return mslMembers;
+				var members = DB.Members.ToList().OrderBy(i => i.DisplayName);
+				var selected = members.Union(IHaveMembers.Members).ToList();
+				return new MultiSelectList(members, "MemberID", "DisplayName", selected);
 			}
 		}
 
-		private List<string> memberStringIDs;
-		public List<string> MemberStringIDs
-		{
-			get
-			{
-				if (memberStringIDs == null) memberStringIDs = new List<string>();
-				return memberStringIDs;
-			}
-			set
-			{
-				memberStringIDs = value;
-			}
-		}
+		public List<string> MemberIDs { get; set; }
+		
+
+
+
+		//private List<SelectListItem> sliMembers;
+		//public List<SelectListItem> GetMemberSelectListItems()
+		//{
+		//	//if (sliMembers == null)
+		//	{
+		//		sliMembers = new List<SelectListItem>();
+		//		foreach (var memb in DB.Members)
+		//		{
+		//			var slMember = new SelectListItem
+		//			{
+		//				Value = memb.MemberID.ToString(),
+		//				Text = memb.Name,
+		//				Selected =
+		//					IHaveMembers
+		//					.Members
+		//					.Select(m => m.MemberID)
+		//					.Contains(memb.MemberID) ? true : false
+		//			};
+		//			sliMembers.Add(slMember);
+		//		}
+		//	}
+		//	return sliMembers;
+		//}
+
+		//private MultiSelectList mslMembers;
+		//public MultiSelectList MSLMembers
+		//{
+		//	get
+		//	{
+		//		//if (mslMembers == null)
+		//		{
+		//			var items = GetMemberSelectListItems();
+
+		//			var selected =
+		//				items
+		//				.Where(slm => slm.Selected)
+		//				.Select(slm => slm)
+		//				.ToList();
+
+		//			mslMembers = new MultiSelectList
+		//				(items.OrderBy(m => m.Text), "Value", "Text", selected);
+		//		}
+		//		return mslMembers;
+		//	}
+		//}
+
+		//private List<string> memberStringIDs;
+		//public List<string> MemberStringIDs
+		//{
+		//	get
+		//	{
+		//		if (memberStringIDs == null) memberStringIDs = new List<string>();
+		//		return memberStringIDs;
+		//	}
+		//	set
+		//	{
+		//		memberStringIDs = value;
+		//	}
+		//}
 
 
 

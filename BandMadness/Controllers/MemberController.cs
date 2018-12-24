@@ -1,5 +1,4 @@
 ﻿using BandMadness.Models;
-using BandMadness.Views.Member.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -48,56 +47,35 @@ namespace BandMadness.Controllers
 			return PartialView("_Invalid");
 		}
 
-		[HttpGet]
+		[HttpGet] //https://www.codeproject.com/Articles/1063846/%2FArticles%2F1063846%2FStep-By-Step-Implementation-of-MultiSelectList-In
 		public ActionResult Edit(int MemberID = -1)
 		{
 			var member = DB.Members.Find(MemberID);
-
-			var allInstruments = DB.Instruments.ToList();
-
-			List<SelectListItem> items = new List<SelectListItem>();
-			foreach (var inst in allInstruments)
-			{
-				var item = new SelectListItem
-				{
-					Value = inst.InstrumentID.ToString(),
-					Text = inst.Name,
-					Selected = member.Instruments.Contains(inst) ? true : false
-				};
-				items.Add(item);
-			}
-			var selected = items.Where(i => i.Selected).Select(i => i.Value).ToList();
-			MultiSelectList instList = new MultiSelectList
-				(items.OrderBy(i => i.Text), "Value", "Text", selected);
-			MemberEdit model = new MemberEdit { SLInstruments = instList };
-			model.Member = member;
-
-
-			return View(model);
+			return View(member);
 		}
 
-		[HttpPost]
-		[ValidateAntiForgeryToken]
-		public ActionResult Edit([Bind(Include = "Member,InstrumentIDs")]MemberEdit memberEdit)
-		{
-			if (ModelState.IsValid)
-			{
-				DB.Entry(memberEdit.Member).State = EntityState.Modified;
+		//[HttpPost]
+		//[ValidateAntiForgeryToken]
+		//public ActionResult Edit([Bind(Include = "Member,InstrumentIDs")]MemberEdit memberEdit)
+		//{
+		//	if (ModelState.IsValid)
+		//	{
+		//		DB.Entry(memberEdit.Member).State = EntityState.Modified;
 
 
-				List<Instrument> addThese = new List<Instrument>();
-				foreach (var inst in memberEdit.InstrumentIDs)
-				{
-					var id = Convert.ToInt32(inst);
-					addThese.Add(DB.Instruments.Find(id));
-				}
-				memberEdit.Member.Instruments.Clear();
-				memberEdit.Member.Instruments.AddRange(addThese);
+		//		List<Instrument> addThese = new List<Instrument>();
+		//		foreach (var inst in memberEdit.InstrumentIDs)
+		//		{
+		//			var id = Convert.ToInt32(inst);
+		//			addThese.Add(DB.Instruments.Find(id));
+		//		}
+		//		memberEdit.Member.Instruments.Clear();
+		//		memberEdit.Member.Instruments.AddRange(addThese);
 
-				DB.SaveChanges();
-			}
-			return View("Index",DB.Members.ToList());
-		}
+		//		DB.SaveChanges();
+		//	}
+		//	return View("Index",DB.Members.ToList());
+		//}
 
 		[HttpPost]
 		public ActionResult Delete(Member member)

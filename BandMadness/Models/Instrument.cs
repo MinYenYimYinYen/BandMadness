@@ -23,8 +23,10 @@ namespace BandMadness.Models
 		public int InstrumentID { get; set; }
 
 		[Required]
-		[StringLength(128, MinimumLength = 2)]
+		//[Display(Name ="Instrument Type")]
+		[StringLength(128, MinimumLength = 2, ErrorMessage ="Instrument Type must be between 2-128 characters long.")]
 		public string Name { get; set; }
+
 
 		#region ViewModel
 		private MemberSelection memberSelection;

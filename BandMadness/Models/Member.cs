@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BandMadness.Models.ManyToMany;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -7,7 +8,7 @@ using System.Web;
 
 namespace BandMadness.Models
 {
-	public class Member
+	public class Member : IHaveInstruments
 	{
 		public Member()
 		{
@@ -22,10 +23,18 @@ namespace BandMadness.Models
 
 		public int MemberID { get; set; }
 
+		[Required]
+		[Display(Name = "First Name")]
 		[MaxLength(64)]
 		public string FirstName { get; set; }
+
+		[Required]
+		[Display(Name = "Last Name")]
 		[MaxLength(64)]
 		public string LastName { get; set; }
+
+		[Required]
+		[Display(Name = "Alias")]
 		[MaxLength(64)]
 		public string Alias { get; set; }
 
@@ -37,6 +46,24 @@ namespace BandMadness.Models
 			}
 		}
 
-
+		#region ViewModel
+		private InstrumentSelection instrumentSelection;
+		[NotMapped]
+		public InstrumentSelection InstrumentSelection
+		{
+			get
+			{
+				if (instrumentSelection == null)
+				{
+					instrumentSelection = new InstrumentSelection(this);
+				}
+				return instrumentSelection;
+			}
+			set
+			{
+				instrumentSelection = value;
+			}
+			#endregion
+		}
 	}
 }

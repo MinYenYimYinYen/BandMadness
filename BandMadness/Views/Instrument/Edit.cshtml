@@ -26,7 +26,7 @@
 		<div class="form-group">
 			<div>@Html.LabelFor(m => m.Members, new { @class = "control-label" })</div>
 	
-			<div>@Html.ListBoxFor(m => m.MemberSelection.MemberStringIDs, Model.MemberSelection.MSLMembers)</div>
+			<div>@Html.ListBoxFor(m => m.MemberSelection.MemberIDs, Model.MemberSelection.MultiSelectList,new {@class="@form-control"})</div>
 
 		</div>
 

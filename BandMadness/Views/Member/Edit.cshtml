@@ -1,5 +1,4 @@
-﻿@model BandMadness.Views.Member.ViewModels.MemberEdit
-
+﻿@model BandMadness.Models.Member
 @{
 	ViewBag.Title = "Edit";
 }
@@ -11,23 +10,23 @@
 	@Html.AntiForgeryToken()
 
 	<div class="form-group">
-		@Html.HiddenFor(m => m.Member.MemberID)
+		@Html.HiddenFor(m => m.MemberID)
 
 			<table>
 				<tr>
-					<th>@Html.LabelFor(m => m.Member.FirstName, new { @class = "control-label col-md-4" })</th>
-					<th>@Html.LabelFor(m => m.Member.LastName, new { @class = "control-label col-md-4" })</th>
-					<th>@Html.LabelFor(m => m.Member.Alias, new { @class = "control-label col-md-4" })</th>
+					<th>@Html.LabelFor(m => m.FirstName, new { @class = "control-label col-md-4" })</th>
+					<th>@Html.LabelFor(m => m.LastName, new { @class = "control-label col-md-4" })</th>
+					<th>@Html.LabelFor(m => m.Alias, new { @class = "control-label col-md-4" })</th>
 				</tr>
 				<tr>
-					<td>@Html.EditorFor(m => m.Member.FirstName, new { @class = "form-control col-md-7" })</td>
-					<td>@Html.EditorFor(m => m.Member.LastName, new { @class = "form-control col-md-7" })</td>
-					<td>@Html.EditorFor(m => m.Member.Alias, new { @class = "form-control col-md-7" })</td>
+					<td>@Html.EditorFor(m => m.FirstName, new { @class = "form-control col-md-7" })</td>
+					<td>@Html.EditorFor(m => m.LastName, new { @class = "form-control col-md-7" })</td>
+					<td>@Html.EditorFor(m => m.Alias, new { @class = "form-control col-md-7" })</td>
 				</tr>
 			</table>
 		<table>
-			<tr><th>@Html.LabelFor(m => m.Member.Instruments, new { @class = "control-label" })</th></tr>
-			<tr><td>@Html.ListBoxFor(m=>Model.InstrumentIDs,Model.SLInstruments)</td></tr>
+			<tr><th>@Html.LabelFor(m => m.Instruments, new { @class = "control-label" })</th></tr>
+			<tr><td>@Html.ListBoxFor(m=>m.InstrumentSelection.InstrumentIDs, Model.InstrumentSelection.MultiSelectList,new {@class="form-control"})</td></tr>
 
 		</table>
 			<br />
@@ -44,7 +43,7 @@
 	</div>
 }
 <div>
-	@{ Html.RenderPartial("_Delete", Model.Member);}
+	@{ Html.RenderPartial("_Delete", Model);}
 </div>
 <div>
 	@Html.ActionLink("Back to List", "Index")
