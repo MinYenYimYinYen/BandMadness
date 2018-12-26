@@ -1,0 +1,39 @@
+﻿@model RecAlbum
+
+@{
+	var db = new BMContext();
+
+	var SLInstruments = new SelectList(db.
+		Instruments
+		.ToList()
+		.OrderBy(i => i.Name), "InstrumentID", "Name");
+
+	var SLMembers = new SelectList(db.
+		Members
+		.ToList()
+		.OrderBy(m => m.DisplayName), "MemberID", "DisplayName");
+}
+
+@using (Html.BeginForm("AddRecording", "Song", FormMethod.Post))
+{
+	<div class="form-inline">
+		<div class="form-group">
+			@Html.DropDownListFor(m => m.Member, SLMembers, "Select Member")
+			@Html.DropDownListFor(m => m.Instrument, SLInstruments, "Select Instrument")
+		</div>
+		<div class="form-group">
+			@Html.LabelFor(m => m.FolderPath)
+			@Html.TextBoxFor(m => m.FolderPath)
+		</div>
+		<div class="form-group">
+			@Html.LabelFor(m => m.FileName)
+			@Html.TextBoxFor(m => m.FileName)
+		</div>
+		<div class="form-group">
+			<div class="col-md-offset-2 col-md-10">
+				<input type="submit" value="Create" class="btn btn-default" />
+			</div>
+		</div>
+	</div>
+
+}

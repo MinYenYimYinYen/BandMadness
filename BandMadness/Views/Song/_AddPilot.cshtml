@@ -1,0 +1,45 @@
+﻿@model RecPilot
+
+@using BandMadness.Models.ManyToMany;
+@{
+
+
+	var db = new BMContext();
+
+	var SLInstruments = new SelectList(db.
+		Instruments
+		.OrderBy(i => i.Name)
+		.AsEnumerable()
+		.Select(i=>new SelectListItem
+		{
+			Text = i.Name,
+			Value = i.InstrumentID.ToString()
+		})
+		, "InstrumentID", "Name");
+
+}
+
+@using (Html.BeginForm("AddPilot","Song",FormMethod.Post))
+{
+	<div class="form-inline">
+		<div class="form-group">
+			@Html.HiddenFor(m=>m.SongID)
+			@Html.DropDownListFor(m => m.MemberID, Model.MemberSelection.SelectList, "Select Member")
+			@Html.DropDownListFor(m => m.InstrumentID, Model.InstrumentSelection.SelectList,"Select Instrument")			
+		</div>
+		<div class="form-group">
+			@Html.LabelFor(m=>m.FolderPath)
+			@Html.TextBoxFor(m=>m.FolderPath)
+		</div>
+		<div class="form-group">
+			@Html.LabelFor(m => m.FileName)
+			@Html.TextBoxFor(m => m.FileName)
+		</div>
+		<div class="form-group">
+			<div class="col-md-offset-2 col-md-10">
+				<input type="submit" value="Create" class="btn btn-default" />
+			</div>
+		</div>
+	</div>
+	
+}

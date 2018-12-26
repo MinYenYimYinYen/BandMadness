@@ -8,11 +8,13 @@ namespace BandMadness.Models.ManyToMany
 {
 	public class InstrumentSelection
 	{
+		public InstrumentSelection() { }
 		public InstrumentSelection(IHaveInstruments iInstruments)
 		{
 			IHaveInstruments = iInstruments;
 		}
-		public IHaveInstruments IHaveInstruments { get; set; }
+		public readonly IHaveInstruments IHaveInstruments;
+		public readonly Song Song;
 
 		private BMContext db____;
 		public BMContext DB
@@ -31,86 +33,42 @@ namespace BandMadness.Models.ManyToMany
 		{
 			get
 			{
+				if (IHaveInstruments == null) throw new Exception("MultiSelectList only available to IHaveInstruments");
 				var instruments = DB.Instruments.ToList().OrderBy(i => i.Name);
 				var selectedInstrumentIDs = IHaveInstruments.Instruments.Select(i => i.InstrumentID).ToList();
 				var selected = new List<int>();
-				foreach(var instrument in instruments)
+				foreach (var instrument in instruments)
 				{
 					if (selectedInstrumentIDs.Contains(instrument.InstrumentID))
 					{
 						selected.Add(instrument.InstrumentID);
 					}
 				}
-				return new MultiSelectList(instruments,"InstrumentID","Name",selected);
+				return new MultiSelectList(instruments, "InstrumentID", "Name", selected);
+			}
+		}
+
+		public SelectList SelectList
+		{
+			get
+			{
+				var db = new BMContext();
+				var instruments = db.Instruments
+					.OrderBy(m => m.Name)
+					.AsEnumerable()
+					.Select(m => new SelectListItem
+					{
+						Value = m.InstrumentID.ToString(),
+						Text = m.Name
+					});
+				return new SelectList(instruments, "Value", "Text", null); //5th overload. 
 			}
 		}
 
 
 		public List<string> InstrumentIDs { get; set; }
 
-		//THIS IS LEAVING OFF AT BULLET POINT 3.  STILL NEED TO IMPLEMENT AS SUCH ON iHAVEMEMBERS
 
-
-
-		//private List<SelectListItem> sliInstruments;
-		//public List<SelectListItem> GetInstrumentSelectListItems()
-		//{
-		//	//if (sliInstruments == null)
-		//	{
-		//		sliInstruments = new List<SelectListItem>();
-		//		foreach (var inst in DB.Instruments)
-		//		{
-		//			var slInstrument = new SelectListItem
-		//			{
-		//				Value = inst.InstrumentID.ToString(),
-		//				Text = inst.Name,
-		//				Selected =
-		//					IHaveInstruments
-		//					.Instruments
-		//					.Select(m => m.InstrumentID)
-		//					.Contains(inst.InstrumentID) ? true : false
-		//			};
-		//			sliInstruments.Add(slInstrument);
-		//		}
-		//	}
-		//	return sliInstruments;
-		//}
-
-		//private MultiSelectList mslInstruments;
-		//public MultiSelectList MSLInstruments
-		//{
-		//	get
-		//	{
-		//		//if (mslInstruments == null)
-		//		{
-		//			var items = GetInstrumentSelectListItems();
-
-		//			var selected =
-		//				items
-		//				.Where(slm => slm.Selected)
-		//				.Select(slm => slm)
-		//				.ToList();
-
-		//			mslInstruments = new MultiSelectList
-		//				(items.OrderBy(m => m.Text), "Value", "Text", selected);
-		//		}
-		//		return mslInstruments;
-		//	}
-		//}
-
-		//private List<string> instrumentStringIDs;
-		//public List<string> InstrumentStringIDs
-		//{
-		//	get
-		//	{
-		//		if (instrumentStringIDs == null) instrumentStringIDs = new List<string>();
-		//		return instrumentStringIDs;
-		//	}
-		//	set
-		//	{
-		//		instrumentStringIDs = value;
-		//	}
-		//}
 
 
 

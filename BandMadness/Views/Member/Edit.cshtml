@@ -12,7 +12,7 @@
 	<div class="form-group">
 		@Html.HiddenFor(m => m.MemberID)
 
-			<table>
+			<table class="table table-responsive table-hover">
 				<tr>
 					<th>@Html.LabelFor(m => m.FirstName, new { @class = "control-label col-md-4" })</th>
 					<th>@Html.LabelFor(m => m.LastName, new { @class = "control-label col-md-4" })</th>
@@ -44,9 +44,7 @@
 		</div>
 	</div>
 }
-<div>
-	@{ Html.RenderPartial("_Delete", Model);}
-</div>
+
 <div>
 	@Html.ActionLink("Back to List", "Index")
 </div>

@@ -5,9 +5,14 @@ using System.Web;
 
 namespace BandMadness.Models.ManyToMany
 {
-	public interface IHaveMembers
+	public interface IHaveMembers:IHaveMember
 	{
 		List<Member> Members { get; set; }
+		
+	}
+
+	public interface IHaveMember
+	{
 		MemberSelection MemberSelection { get; set; }
 	}
 }

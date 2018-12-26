@@ -49,25 +49,40 @@ namespace BandMadness.Controllers
 
 		public ActionResult Edit(int SongID = -1)
 		{
-			var DB = new BMContext();
 			var song = DB.Songs.Find(SongID);
-			if (song == null) return View("Index");
 			return View(song);
 		}
 
+		//[HttpPost]
+		//public ActionResult Edit(Song song)
+		//{
+		//	if (ModelState.IsValid)
+		//	{
+		//		Song dbSong = DB.Songs.Find(song.SongID);
+
+
+		//	}
+		//}
 		[HttpPost]
-		public ActionResult Edit(Song song)
+		public ActionResult AddPilot()
 		{
-			if (ModelState.IsValid)
+			var pilot = new RecPilot();
+			if (TryUpdateModel(pilot))
 			{
-				//happy path
-				DB.Entry(song).State = EntityState.Modified;
+				DB.Recordings.Add(pilot);
 				DB.SaveChanges();
-				return View("Index", DB.Songs.ToList());
+				return RedirectToAction("Edit", DB.Songs.Find(pilot.SongID));
 			}
-			//sad path
-			return View("Edit", song);
+			else
+			{
+				var x = ModelState;
+				ModelState modelstate;
+				var songID = x.TryGetValue("SongID", out modelstate);
+				return View("Edit",  DB.Songs.Find(Convert.ToInt32(modelstate.Value.AttemptedValue)));
+			}
+
 		}
+
 
 		[HttpPost]
 		public ActionResult Delete(Song song)

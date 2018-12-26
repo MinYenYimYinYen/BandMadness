@@ -188,9 +188,20 @@
     <Compile Include="Migrations\201812210427120_RecordingAbstract.Designer.cs">
       <DependentUpon>201812210427120_RecordingAbstract.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201812241728373_SongDetails.cs" />
+    <Compile Include="Migrations\201812241728373_SongDetails.Designer.cs">
+      <DependentUpon>201812241728373_SongDetails.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201812250019314_MoreSongDetails.cs" />
+    <Compile Include="Migrations\201812250019314_MoreSongDetails.Designer.cs">
+      <DependentUpon>201812250019314_MoreSongDetails.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201812250147179_MoreSongDetails1.cs" />
+    <Compile Include="Migrations\201812250147179_MoreSongDetails1.Designer.cs">
+      <DependentUpon>201812250147179_MoreSongDetails1.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AbstractDB.cs" />
-    <Compile Include="Models\DBSets\SongDbSet.cs" />
     <Compile Include="Models\ManyToMany\InstrumentSelection.cs" />
     <Compile Include="Models\ManyToMany\IHaveInstruments.cs" />
     <Compile Include="Models\ManyToMany\IHaveMembers.cs" />
@@ -255,6 +266,10 @@
     <Content Include="Views\Member\_Create.cshtml" />
     <Content Include="Views\Member\_Delete.cshtml" />
     <Content Include="Views\Member\Edit.cshtml" />
+    <Content Include="Views\Song\_AddPilot.cshtml" />
+    <Content Include="Views\Song\_ShowPilot.cshtml" />
+    <Content Include="Views\Song\_AddAlbumTrack.cshtml" />
+    <Content Include="Views\Song\_ShowAlbumTrack.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -304,6 +319,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201812210427120_RecordingAbstract.resx">
       <DependentUpon>201812210427120_RecordingAbstract.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201812241728373_SongDetails.resx">
+      <DependentUpon>201812241728373_SongDetails.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201812250019314_MoreSongDetails.resx">
+      <DependentUpon>201812250019314_MoreSongDetails.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201812250147179_MoreSongDetails1.resx">
+      <DependentUpon>201812250147179_MoreSongDetails1.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

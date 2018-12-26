@@ -50,21 +50,5 @@ namespace BandMadness.Models
 
 		#endregion
 
-		public override bool Equals(object obj)
-		{
-			try
-			{
-				var inst = (Instrument)obj;
-				if (inst.InstrumentID == this.InstrumentID)
-				{
-					return true;
-				}
-				return false;
-			}
-			catch (Exception)
-			{
-				return false;
-			}
-		}
 	}
 }

@@ -4,38 +4,67 @@
 	ViewBag.Title = "Edit";
 }
 
-<h2>Edit</h2>
 
-@using (Html.BeginForm("Edit","Song"))
+
+	<table class="table table-responsive">
+		<tr>
+			<th>@Model.Title</th>
+			<th>Recordings</th>
+		</tr>
+		<tr>
+
+@using (Html.BeginForm("Edit", "Song", FormMethod.Post))
 {
-	@Html.AntiForgeryToken()
+			<td id="left-side" style="width: 50%;">
+				<div id="title" class="form-group">
+					@Html.LabelFor(m => m.Title)
+					@Html.TextBoxFor(m => m.Title, new { style = "width: 350; max-width=900px;" })
+				</div>
 
-	<div class="form-horizontal">
-		<h4>Song</h4>
-		<hr />
-		@Html.ValidationSummary(true, "", new { @class = "text-danger" })
-		@Html.HiddenFor(model => model.SongID)
+				<div id="tempo" class="form-group">
+					@Html.LabelFor(m => m.Tempo)
+					@Html.TextBoxFor(m => m.Tempo, new { style = "width: 100px; max-width=900px;" })
+				</div>
 
-		<div class="form-group">
-			@Html.LabelFor(model => model.Title, htmlAttributes: new { @class = "control-label col-md-2" })
-			<div class="col-md-10">
-				@Html.EditorFor(model => model.Title, new { htmlAttributes = new { @class = "form-control" } })
-				@Html.ValidationMessageFor(model => model.Title, "", new { @class = "text-danger" })
-			</div>
-		</div>
+				<div id="notes" class="form-group">
+					@Html.LabelFor(m => m.Notes)
+					@Html.TextAreaFor(m => m.Notes, new { style = "width: 100%; height:150px; max-width=900px; font-family:MonoSpace;" })
+				</div>
+
+				<div id="lyrics" class="form-group">
+					@Html.LabelFor(m => m.Lyrics)
+					@Html.TextAreaFor(m => m.Lyrics, new { style = "width: 100%;height:320px" })
+				</div>
+
+				<div class="form-group">
+					<input type="submit" value="Save" class="btn btn-default" />
+				</div>
+
+			</td>
+}
+
+			<td id="right-side">
+				<div id="assign-pilot">
+					<h3>Pilot Tracks</h3>
+					@{ Html.RenderPartial("_AddPilot", new RecPilot(Model.SongID));}
+					@foreach (var rec in Model.Recordings)
+					{
+						Html.RenderPartial("_ShowPilot", rec);
+					}
+
+				</div>
 
 
+				<div id="assign-albumtrack">
+					<h3>Album Tracks</h3>
+					@{ Html.RenderPartial("_AddAlbumTrack", new RecAlbum());}
+				</div>
+			</td>
+		</tr>
+	</table>
 
-		<div class="form-group">
-			<div class="col-md-offset-2 col-md-10">
-				<input type="submit" value="Save" class="btn btn-default" />
-			</div>
-		</div>
-	</div>
-			}
-<div>
-	@{ Html.RenderPartial("_Delete", Model);}
-</div>
+						
+
 <div>
 	@Html.ActionLink("Back to List", "Index")
 </div>

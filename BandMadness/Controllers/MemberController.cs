@@ -40,11 +40,11 @@ namespace BandMadness.Controllers
 				{
 					DB.Members.Add(member);
 					DB.SaveChanges();
-					return View("Index", DB.Members.ToList());
+					
 				}
-				return PartialView("_AlreadyExists");
+				return RedirectToAction("Index", DB.Members.ToList());
 			}
-			return PartialView("_Invalid");
+			return View("Index", DB.Members.ToList());
 		}
 
 		[HttpGet] //https://www.codeproject.com/Articles/1063846/%2FArticles%2F1063846%2FStep-By-Step-Implementation-of-MultiSelectList-In
@@ -60,7 +60,11 @@ namespace BandMadness.Controllers
 			if (ModelState.IsValid)
 			{
 				Member dbMember = DB.Members.Find(member.MemberID);
-			
+				#region Primitives
+				dbMember.FirstName = member.FirstName;
+				dbMember.LastName = member.LastName;
+				dbMember.Alias = member.Alias;
+				#endregion
 				#region ManyInstruments
 				dbMember.Instruments.Clear();
 				foreach (var inst in member.InstrumentSelection.InstrumentIDs)

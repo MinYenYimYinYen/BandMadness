@@ -9,14 +9,7 @@
 <p>
 	@{ Html.RenderPartial("_Create", new Instrument());}
 </p>
-<table class="table">
-	<tr>
-		<th>
-			@Html.DisplayNameFor(model => model.Name)
-		</th>
-		<th></th>
-	</tr>
-
+<table class="table table-responsive table-hover">
 	@foreach (var item in Model)
 	{
 		<tr>
