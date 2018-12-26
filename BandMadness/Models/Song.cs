@@ -10,7 +10,20 @@ namespace BandMadness.Models
 {
 	public class Song
 	{
-		public virtual List<Recording> Recordings { get; set; }
+		private List<Recording> recordings;
+		public virtual List<Recording> Recordings
+		{
+			get
+			{
+				if (recordings == null)
+				{
+					recordings = new BMContext().Recordings
+						.Where(r => r.SongID == SongID).ToList();
+				}
+				return recordings;
+			}
+			set { recordings = value; }
+		}
 
 		private List<RecPilot> pilotTracks;
 		[NotMapped]
@@ -19,7 +32,7 @@ namespace BandMadness.Models
 			get
 			{
 				pilotTracks = Recordings.OfType<RecPilot>()
-					.OrderBy(r =>r.Instrument==null? r.InstrumentID.ToString():  r.Instrument.Name)
+					.OrderBy(r => r.Instrument.Name)
 					.ThenByDescending(r => r.SubmitDate)
 					.ToList();
 
@@ -46,16 +59,16 @@ namespace BandMadness.Models
 		public int SongID { get; set; }
 
 		[StringLength(128)]
-		[Required(ErrorMessage ="Song must have a name")]
+		[Required(ErrorMessage = "Song must have a name")]
 		public string Title { get; set; }
 
 		[DataType(DataType.MultilineText)]
-		public string Lyrics { get; set;}
+		public string Lyrics { get; set; }
 
 		[DataType(DataType.MultilineText)]
 		public string Notes { get; set; }
-		
-		[DisplayFormat(ApplyFormatInEditMode =true, DataFormatString = "#.00 bpm")]
+
+		[DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "#.00 bpm")]
 		public double? Tempo { get; set; }
 
 

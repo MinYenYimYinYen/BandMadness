@@ -19,7 +19,19 @@ namespace BandMadness.Models
 
 
 		public virtual int SongID { get; set; }
-		public virtual Song Song { get; set; }
+		private Song song;
+		public virtual Song Song
+		{
+			get
+			{
+				if(song == null)
+				{
+					song = new BMContext().Songs.Find(SongID);
+				}
+				return song;
+			}
+			set { song = value; }
+		}
 
 
 		public int InstrumentID { get; set; }
